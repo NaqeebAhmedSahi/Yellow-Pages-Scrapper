@@ -12,6 +12,12 @@ Production-ready Python scraper for [Yellow Pages](https://www.yellowpages.com) 
 
 ![Yellow Pages Scraper GUI](docs/gui-preview.png)
 
+## Performance ideas (next upgrades)
+
+The current scraper is reliable but **single-browser / sequential**, so large jobs take time. For ideas on speeding it up — multi-Chrome workers, page-wise parallel crawl, async image downloads, fast mode, and more — see:
+
+**[docs/PERFORMANCE.md](docs/PERFORMANCE.md)** — compare options and decide what to build next.
+
 ## Quick Start (Windows)
 
 ```bat
