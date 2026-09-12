@@ -9,6 +9,7 @@ Production-ready Python scraper for [Yellow Pages](https://www.yellowpages.com) 
 - **Resume support** via `progress.json` (scraped / pending / failed tracking)
 - **Full desktop GUI**: Scraper, History, Settings, Export/Import, Help
 - **Presets** and persistent app settings
+- **PyInstaller portable app** for other PCs (no Python install needed)
 
 ![Yellow Pages Scraper GUI](docs/gui-preview.png)
 
@@ -18,14 +19,48 @@ The current scraper is reliable but **single-browser / sequential**, so large jo
 
 **[docs/PERFORMANCE.md](docs/PERFORMANCE.md)** — compare options and decide what to build next.
 
-## Quick Start (Windows)
+## Build a portable app (PyInstaller)
+
+Share the scraper with other PCs **without source code or Python packages**.
+
+| Goal | What to run |
+|------|-------------|
+| Build on Windows | `build_windows.bat` |
+| Build on Linux | `./build_linux.sh` |
+| Full packaging guide | **[docs/PACKAGING.md](docs/PACKAGING.md)** |
+
+### Quick Windows build
+
+1. Install **Python 3.10+** and **Google Chrome**
+2. Double-click `build_windows.bat`
+3. Wait for **BUILD SUCCESS**
+4. Zip this folder and send it to other PCs:
+
+```text
+dist\YellowPagesScraper\
+```
+
+5. On the other PC: extract → run `YellowPagesScraper.exe`
+6. That PC needs **Google Chrome** only (no Python)
+
+### Quick Linux build
+
+```bash
+chmod +x build_linux.sh
+./build_linux.sh
+# result: dist/YellowPagesScraper/
+```
+
+> Build on the same OS you want to run on (Windows build ≠ Linux binary).
+
+## Quick Start (Windows — from source)
 
 ```bat
 setup.bat
 run_gui.bat
 ```
 
-## Quick Start (Ubuntu / Linux)
+## Quick Start (Ubuntu / Linux — from source)
 
 ```bash
 python3 -m venv venv
@@ -79,6 +114,7 @@ python main.py --no-download-images
 | `output/logs/scraper.log` | Runtime logs |
 
 Gallery JSON entries keep the remote `url` and add a relative `local_path` (e.g. `images/123/abc.jpg`) when downloads are enabled. CSV includes `gallery_local_paths`.
+
 ## Resume Behavior
 
 If scraping stops midway (crash, stop button, close app):
@@ -92,16 +128,23 @@ If scraping stops midway (crash, stop button, close app):
 
 ```
 Yellow Pages/
-├── config/settings.py       # Configuration
+├── config/settings.py          # Configuration (frozen-app aware paths)
 ├── src/
-│   ├── browser/             # Undetected Chrome driver
-│   ├── parsers/             # Listing & detail HTML parsers
-│   ├── scraper/             # Orchestrator (pagination + resume)
-│   ├── storage/             # CSV, JSON, images, progress, app store
-│   └── gui/                 # Multi-page Tkinter application
-├── main.py                  # CLI entry
-├── gui.py                   # GUI entry
-├── setup.bat                # One-click venv setup
+│   ├── browser/                # Undetected Chrome driver
+│   ├── parsers/                # Listing & detail HTML parsers
+│   ├── scraper/                # Orchestrator (pagination + resume)
+│   ├── storage/                # CSV, JSON, images, progress, app store
+│   └── gui/                    # Multi-page Tkinter application
+├── main.py                     # CLI entry
+├── gui.py                      # GUI entry
+├── YellowPagesScraper.spec     # PyInstaller spec
+├── build_windows.bat           # One-click Windows portable build
+├── build_linux.sh              # One-click Linux portable build
+├── requirements.txt            # Runtime deps
+├── requirements-build.txt      # PyInstaller (build only)
+├── docs/PACKAGING.md           # Full packaging guide
+├── docs/PERFORMANCE.md         # Speed-up ideas
+├── setup.bat                   # One-click venv setup
 ├── run_gui.bat
 └── run_cli.bat
 ```
@@ -111,3 +154,4 @@ Yellow Pages/
 - Python 3.10+ (on Python 3.12+, `setuptools` is required because `distutils` was removed)
 - Google Chrome installed
 - Windows / macOS / Linux
+- For portable builds: see [docs/PACKAGING.md](docs/PACKAGING.md)

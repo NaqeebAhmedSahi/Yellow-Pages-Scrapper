@@ -1,8 +1,19 @@
 """Application-wide configuration."""
 
+from __future__ import annotations
+
+import sys
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+
+def _app_base_dir() -> Path:
+    """Project root in source mode; folder containing the EXE when frozen."""
+    if getattr(sys, "frozen", False):
+        return Path(sys.executable).resolve().parent
+    return Path(__file__).resolve().parent.parent
+
+
+BASE_DIR = _app_base_dir()
 OUTPUT_DIR = BASE_DIR / "output"
 DATA_DIR = OUTPUT_DIR / "data"
 LOGS_DIR = OUTPUT_DIR / "logs"

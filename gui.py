@@ -6,12 +6,19 @@ import logging
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
 
-from config.settings import LOGS_DIR
-from src.gui.app import YellowPagesGUI
+def _prepare_sys_path() -> None:
+    if getattr(sys, "frozen", False):
+        return
+    root = Path(__file__).resolve().parent
+    if str(root) not in sys.path:
+        sys.path.insert(0, str(root))
+
+
+_prepare_sys_path()
+
+from config.settings import LOGS_DIR  # noqa: E402
+from src.gui.app import YellowPagesGUI  # noqa: E402
 
 
 def setup_logging() -> None:
