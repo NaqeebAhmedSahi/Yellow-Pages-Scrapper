@@ -1,0 +1,23 @@
+(venv) PS C:\Users\User\Desktop\Workspace\Scrappers\Yellow Pages> python gui.py
+>>
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\Workspace\Scrappers\Yellow Pages\gui.py", line 14, in <module>
+    from src.gui.app import YellowPagesGUI
+  File "C:\Users\User\Desktop\Workspace\Scrappers\Yellow Pages\src\gui\__init__.py", line 1, in <module>  
+    from .app import YellowPagesGUI
+  File "C:\Users\User\Desktop\Workspace\Scrappers\Yellow Pages\src\gui\app.py", line 13, in <module>
+    from src.scraper.orchestrator import ScraperOrchestrator
+  File "C:\Users\User\Desktop\Workspace\Scrappers\Yellow Pages\src\scraper\__init__.py", line 1, in <module>
+    from .orchestrator import ScraperOrchestrator
+  File "C:\Users\User\Desktop\Workspace\Scrappers\Yellow Pages\src\scraper\orchestrator.py", line 19, in <module>
+    from src.browser.driver_factory import BrowserManager
+  File "C:\Users\User\Desktop\Workspace\Scrappers\Yellow Pages\src\browser\__init__.py", line 1, in <module>
+    from .driver_factory import BrowserManager
+  File "C:\Users\User\Desktop\Workspace\Scrappers\Yellow Pages\src\browser\driver_factory.py", line 9, in <module>
+    import undetected_chromedriver as uc
+  File "C:\Users\User\Desktop\Workspace\Scrappers\Yellow Pages\venv\Lib\site-packages\undetected_chromedriver\__init__.py", line 44, in <module>
+    from .patcher import IS_POSIX
+  File "C:\Users\User\Desktop\Workspace\Scrappers\Yellow Pages\venv\Lib\site-packages\undetected_chromedriver\patcher.py", line 4, in <module>
+    from distutils.version import LooseVersion
+ModuleNotFoundError: No module named 'distutils'
+(venv) PS C:\Users\User\Desktop\Workspace\Scrappers\Yellow Pages> 
