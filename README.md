@@ -93,6 +93,6 @@ Yellow Pages/
 
 ## Requirements
 
-- Python 3.10+
+- Python 3.10+ (on Python 3.12+, `setuptools` is required because `distutils` was removed)
 - Google Chrome installed
 - Windows / macOS / Linux
