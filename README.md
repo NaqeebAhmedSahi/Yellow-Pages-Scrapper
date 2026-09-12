@@ -16,7 +16,18 @@ setup.bat
 run_gui.bat
 ```
 
+## Quick Start (Ubuntu / Linux)
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python gui.py
+```
+
 ## Manual Setup
+
+**Windows**
 
 ```bat
 python -m venv venv
@@ -25,9 +36,20 @@ pip install -r requirements.txt
 python gui.py
 ```
 
+**Ubuntu / Linux / macOS**
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python gui.py
+```
+
+> On Linux/macOS, use `source venv/bin/activate` (or `. venv/bin/activate`). Do not run `venv/bin/activate` directly.
+
 ## CLI Usage
 
-```bat
+```bash
 python main.py --url "https://www.yellowpages.com/los-angeles-ca/restaurants"
 python main.py --url "https://www.yellowpages.com/los-angeles-ca/restaurants" --max-pages 2 --headless
 python main.py --output "output/data" --verbose
