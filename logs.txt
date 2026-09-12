@@ -21,3 +21,61 @@ Traceback (most recent call last):
     from distutils.version import LooseVersion
 ModuleNotFoundError: No module named 'distutils'
 (venv) PS C:\Users\User\Desktop\Workspace\Scrappers\Yellow Pages> 
+
+
+
+
+
+   "gallery_images": [
+      {
+        "url": "https://i4.ypcdn.com/blob/a256dfb559d8a66eedc214b60dee3054de701fdd",
+        "media_id": "a256dfb559d8a66eedc214b60dee3054de701fdd",
+        "caption": "",
+        "username": "Foursquare",
+        "source": "yp"
+      },
+      {
+        "url": "https://i4.ypcdn.com/blob/9ea5a20edabe41c0d90c51458a997c4d6628e797",
+        "media_id": "9ea5a20edabe41c0d90c51458a997c4d6628e797",
+        "caption": "",
+        "username": "Foursquare",
+        "source": "yp"
+      },
+      {
+        "url": "https://i3.ypcdn.com/blob/7eaba97aa14c81c9a1f924526e30fd6c46ccad81",
+        "media_id": "7eaba97aa14c81c9a1f924526e30fd6c46ccad81",
+        "caption": "",
+        "username": "Foursquare",
+        "source": "yp"
+      },
+      {
+        "url": "https://i1.ypcdn.com/blob/605e75e98fda301d9142eda82b90ee9391b04123",
+        "media_id": "605e75e98fda301d9142eda82b90ee9391b04123",
+        "caption": "",
+        "username": "Foursquare",
+        "source": "yp"
+      },
+      {
+        "url": "https://i4.ypcdn.com/blob/3b56c5bc8a9d7aea3a707a650edcb66bd9a180a1",
+        "media_id": "3b56c5bc8a9d7aea3a707a650edcb66bd9a180a1",
+        "caption": "",
+        "username": "Foursquare",
+        "source": "yp"
+      },
+      {
+        "url": "https://i1.ypcdn.com/blob/1d8c9f1b1d0e7c77be4dac4ba2e6672e87cad2cc",
+        "media_id": "1d8c9f1b1d0e7c77be4dac4ba2e6672e87cad2cc",
+        "caption": "",
+        "username": "Foursquare",
+        "source": "yp"
+      },
+      {
+        "url": "https://i4.ypcdn.com/blob/179299758900041d460fc1caea9c0889ede9e70c",
+        "media_id": "179299758900041d460fc1caea9c0889ede9e70c",
+        "caption": "",
+        "username": "Foursquare",
+
+
+
+
+        for the gallery images, store in the local storage and store path of you can store relative in json and csv.
