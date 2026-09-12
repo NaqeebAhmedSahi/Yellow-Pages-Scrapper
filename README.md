@@ -53,6 +53,7 @@ python gui.py
 python main.py --url "https://www.yellowpages.com/los-angeles-ca/restaurants"
 python main.py --url "https://www.yellowpages.com/los-angeles-ca/restaurants" --max-pages 2 --headless
 python main.py --output "output/data" --verbose
+python main.py --no-download-images
 ```
 
 ## Output Files
@@ -61,9 +62,11 @@ python main.py --output "output/data" --verbose
 |------|-------------|
 | `output/data/businesses.csv` | Flattened business records (one row per business) |
 | `output/data/businesses.json` | Full nested JSON (reviews, gallery, hours, etc.) |
+| `output/data/images/{listing_id}/` | Local gallery images (when enabled; default on) |
 | `output/data/progress.json` | Resume state: scraped, pending, failed URLs |
 | `output/logs/scraper.log` | Runtime logs |
 
+Gallery JSON entries keep the remote `url` and add a relative `local_path` (e.g. `images/123/abc.jpg`) when downloads are enabled. CSV includes `gallery_local_paths`.
 ## Resume Behavior
 
 If scraping stops midway (crash, stop button, close app):

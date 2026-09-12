@@ -21,6 +21,7 @@ from src.models.business import BusinessListing
 from src.parsers.detail_parser import DetailPageParser
 from src.parsers.listing_parser import ListingPageParser
 from src.storage.csv_writer import CSVStorage
+from src.storage.image_downloader import download_gallery_images
 from src.storage.json_writer import JSONStorage
 from src.storage.progress_tracker import ProgressTracker
 
@@ -39,6 +40,7 @@ class ScraperOrchestrator:
         output_dir: Path | None = None,
         headless: bool = False,
         max_pages: int | None = None,
+        download_images: bool = True,
         on_status: StatusCallback | None = None,
         on_progress: ProgressCallback | None = None,
     ) -> None:
@@ -46,6 +48,7 @@ class ScraperOrchestrator:
         self.output_dir = output_dir or DATA_DIR
         self.headless = headless
         self.max_pages = max_pages
+        self.download_images = download_images
         self.on_status = on_status or (lambda msg: None)
         self.on_progress = on_progress or (lambda data: None)
 
@@ -191,6 +194,18 @@ class ScraperOrchestrator:
 
             detail = self._scrape_detail(browser, url, listing)
             if detail:
+                if self.download_images and detail.gallery_images:
+                    listing_key = detail.listing_id or re.sub(r"[^\w.\-]+", "_", detail.name) or "unknown"
+                    self.on_status(
+                        f"Downloading {len(detail.gallery_images)} gallery image(s): {detail.name}"
+                    )
+                    download_gallery_images(
+                        detail.gallery_images,
+                        self.output_dir,
+                        listing_key,
+                        driver=browser.driver,
+                        referer=url,
+                    )
                 self.csv_storage.append(detail)
                 self.json_storage.append(detail)
                 self.progress.mark_scraped(url)

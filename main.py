@@ -34,6 +34,11 @@ def main() -> None:
     parser.add_argument("--output", default=str(DATA_DIR), help="Output directory")
     parser.add_argument("--headless", action="store_true", help="Run browser headless")
     parser.add_argument("--max-pages", type=int, default=0, help="Max listing pages (0 = all)")
+    parser.add_argument(
+        "--no-download-images",
+        action="store_true",
+        help="Do not save gallery images to local disk",
+    )
     parser.add_argument("--verbose", action="store_true", help="Debug logging")
     args = parser.parse_args()
 
@@ -52,6 +57,7 @@ def main() -> None:
         output_dir=Path(args.output),
         headless=args.headless,
         max_pages=max_pages,
+        download_images=not args.no_download_images,
         on_status=on_status,
         on_progress=on_progress,
     )

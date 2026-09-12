@@ -96,6 +96,11 @@ class BusinessDetail:
         data["gallery_images"] = " | ".join(
             img.get("url", "") for img in self.gallery_images if img.get("url")
         )
+        data["gallery_local_paths"] = " | ".join(
+            img.get("local_path", "")
+            for img in self.gallery_images
+            if img.get("local_path")
+        )
         data["places_near"] = " | ".join(
             f"{p.get('name', '')} ({p.get('url', '')})" for p in self.places_near
         )

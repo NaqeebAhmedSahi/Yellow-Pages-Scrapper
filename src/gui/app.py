@@ -115,6 +115,13 @@ class YellowPagesGUI:
         options.grid(row=5, column=0, columnspan=2, sticky=tk.W)
         self.headless_var = tk.BooleanVar(value=False)
         ttk.Checkbutton(options, text="Headless mode", variable=self.headless_var, style="Card.TCheckbutton").pack(side=tk.LEFT, padx=(0, 16))
+        self.download_images_var = tk.BooleanVar(value=True)
+        ttk.Checkbutton(
+            options,
+            text="Store gallery images locally",
+            variable=self.download_images_var,
+            style="Card.TCheckbutton",
+        ).pack(side=tk.LEFT, padx=(0, 16))
         ttk.Label(options, text="Max pages (0 = all)", style="Card.TLabel").pack(side=tk.LEFT)
         self.max_pages_var = tk.StringVar(value="0")
         ttk.Entry(options, textvariable=self.max_pages_var, width=8).pack(side=tk.LEFT, padx=(8, 0))
@@ -181,7 +188,7 @@ class YellowPagesGUI:
 
         footer = ttk.Label(
             self.root,
-            text="Output: businesses.csv | businesses.json | progress.json",
+            text="Output: businesses.csv | businesses.json | progress.json | images/",
             foreground=self.COLORS["text_muted"],
             background=self.COLORS["bg"],
             font=("Segoe UI", 9),
@@ -232,6 +239,7 @@ class YellowPagesGUI:
             output_dir=output_dir,
             headless=self.headless_var.get(),
             max_pages=max_pages,
+            download_images=self.download_images_var.get(),
             on_status=status_cb,
             on_progress=progress_cb,
         )

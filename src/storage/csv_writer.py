@@ -40,6 +40,7 @@ class CSVStorage:
         "amenities",
         "gallery_count",
         "gallery_images",
+        "gallery_local_paths",
         "reviews_yp",
         "reviews_ta",
         "places_near",
