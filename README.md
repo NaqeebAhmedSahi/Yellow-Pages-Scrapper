@@ -10,6 +10,8 @@ Production-ready Python scraper for [Yellow Pages](https://www.yellowpages.com) 
 - **Full desktop GUI**: Scraper, History, Settings, Export/Import, Help
 - **Presets** and persistent app settings
 
+![Yellow Pages Scraper GUI](docs/gui-preview.png)
+
 ## Quick Start (Windows)
 
 ```bat
