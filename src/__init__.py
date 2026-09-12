@@ -1,0 +1,1 @@
+"""Yellow Pages scraper package."""
