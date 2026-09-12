@@ -41,6 +41,8 @@ class ScraperOrchestrator:
         headless: bool = False,
         max_pages: int | None = None,
         download_images: bool = True,
+        request_delay: float | None = None,
+        max_gallery_scrolls: int | None = None,
         on_status: StatusCallback | None = None,
         on_progress: ProgressCallback | None = None,
     ) -> None:
@@ -49,6 +51,8 @@ class ScraperOrchestrator:
         self.headless = headless
         self.max_pages = max_pages
         self.download_images = download_images
+        self.request_delay = REQUEST_DELAY_SECONDS if request_delay is None else request_delay
+        self.max_gallery_scrolls = MAX_GALLERY_SCROLLS if max_gallery_scrolls is None else max_gallery_scrolls
         self.on_status = on_status or (lambda msg: None)
         self.on_progress = on_progress or (lambda data: None)
 
@@ -163,7 +167,7 @@ class ScraperOrchestrator:
                     break
 
                 current_page += 1
-                time.sleep(REQUEST_DELAY_SECONDS)
+                time.sleep(self.request_delay)
 
         if self._stop_event.is_set():
             self.progress.set_status("stopped")
@@ -219,7 +223,7 @@ class ScraperOrchestrator:
                 self.progress.mark_failed(url, "Failed to load or parse detail page")
                 self._emit_progress(failed=True, current_url=url, message=f"Failed: {url}")
 
-            time.sleep(REQUEST_DELAY_SECONDS)
+            time.sleep(self.request_delay)
 
         return not self._stop_event.is_set()
 
@@ -235,7 +239,7 @@ class ScraperOrchestrator:
 
         browser.scroll_to_bottom()
         browser.scroll_element_into_view("#gallery")
-        browser.scroll_carousel("#gallery .collage .next:not(.disabled)", MAX_GALLERY_SCROLLS)
+        browser.scroll_carousel("#gallery .collage .next:not(.disabled)", self.max_gallery_scrolls)
         browser.scroll_element_into_view("#reviews")
         browser.scroll_to_bottom()
 

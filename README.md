@@ -5,9 +5,10 @@ Production-ready Python scraper for [Yellow Pages](https://www.yellowpages.com) 
 - **Undetected Chrome** (Selenium + `undetected-chromedriver`)
 - **Pagination** across all listing pages (e.g. 1–3000)
 - **Detail scraping** for each business (reviews, gallery, hours, more info, etc.)
-- **CSV + JSON** export
+- **CSV + JSON** export and **local gallery image storage**
 - **Resume support** via `progress.json` (scraped / pending / failed tracking)
-- **Professional Tkinter GUI**
+- **Full desktop GUI**: Scraper, History, Settings, Export/Import, Help
+- **Presets** and persistent app settings
 
 ## Quick Start (Windows)
 
@@ -64,6 +65,9 @@ python main.py --no-download-images
 | `output/data/businesses.json` | Full nested JSON (reviews, gallery, hours, etc.) |
 | `output/data/images/{listing_id}/` | Local gallery images (when enabled; default on) |
 | `output/data/progress.json` | Resume state: scraped, pending, failed URLs |
+| `output/app/settings.json` | GUI defaults and timing |
+| `output/app/presets.json` | Saved scraper presets |
+| `output/app/history.json` | Scrape session history |
 | `output/logs/scraper.log` | Runtime logs |
 
 Gallery JSON entries keep the remote `url` and add a relative `local_path` (e.g. `images/123/abc.jpg`) when downloads are enabled. CSV includes `gallery_local_paths`.
@@ -85,8 +89,8 @@ Yellow Pages/
 │   ├── browser/             # Undetected Chrome driver
 │   ├── parsers/             # Listing & detail HTML parsers
 │   ├── scraper/             # Orchestrator (pagination + resume)
-│   ├── storage/             # CSV, JSON, progress tracker
-│   └── gui/                 # Tkinter application
+│   ├── storage/             # CSV, JSON, images, progress, app store
+│   └── gui/                 # Multi-page Tkinter application
 ├── main.py                  # CLI entry
 ├── gui.py                   # GUI entry
 ├── setup.bat                # One-click venv setup
